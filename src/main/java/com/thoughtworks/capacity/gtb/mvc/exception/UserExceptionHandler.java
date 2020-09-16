@@ -15,12 +15,12 @@ public class UserExceptionHandler {
         String message = Objects.requireNonNull(exception.getBindingResult().getFieldError()).getDefaultMessage();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResult(HttpStatus.BAD_REQUEST.value(), message));
+                .body(ErrorResult.builder().code(HttpStatus.BAD_REQUEST.value()).message(message).build());
     }
 
     @ExceptionHandler(UserIsExistedException.class)
     public ResponseEntity<ErrorResult> handle(UserIsExistedException exception){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResult(HttpStatus.BAD_REQUEST.value(), exception.getMessage()));
+                .body(ErrorResult.builder().code(HttpStatus.BAD_REQUEST.value()).message(exception.getMessage()).build());
     }
 }
