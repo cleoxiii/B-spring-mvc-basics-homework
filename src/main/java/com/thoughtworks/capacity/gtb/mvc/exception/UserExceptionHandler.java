@@ -17,4 +17,10 @@ public class UserExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResult(HttpStatus.BAD_REQUEST.value(), message));
     }
+
+    @ExceptionHandler(UserIsExistedException.class)
+    public ResponseEntity<ErrorResult> handle(UserIsExistedException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResult(HttpStatus.BAD_REQUEST.value(), exception.getMessage()));
+    }
 }
