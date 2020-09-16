@@ -7,14 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class UserRepository{
+public class UserRepository {
     private final Map<String, User> users = new HashMap<>();
 
-    public int count() {return users.size();}
+    public int count() {
+        return users.size();
+    }
 
-    public User register(User user) {
+    public void register(User user) {
         users.put(user.getUsername(), user);
-        return user;
     }
 
     public boolean isExisted(User user) {

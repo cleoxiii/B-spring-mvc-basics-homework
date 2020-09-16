@@ -15,7 +15,7 @@ public class UserService {
     }
 
     public void registerUser(User user) {
-        if(userRepository.isExisted(user)) {
+        if (userRepository.isExisted(user)) {
             throw new UserIsExistedException("用户已存在");
         } else {
             user.setId(userRepository.count() + 1);
@@ -25,7 +25,7 @@ public class UserService {
 
     public User loginUser(String username, String password) {
         User user = userRepository.findByUsername(username);
-        if(user == null || !user.getPassword().equals(password)) {
+        if (user == null || !user.getPassword().equals(password)) {
             throw new UserLoginException("用户名或密码错误");
         }
 
