@@ -20,4 +20,8 @@ public class UserRepository{
     public boolean isExisted(User user) {
         return users.containsKey(user.getUsername());
     }
+
+    public User findByUsername(String username) {
+        return users.get(username);
+    }
 }
