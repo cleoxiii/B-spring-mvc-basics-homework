@@ -1,7 +1,6 @@
 package com.thoughtworks.capacity.gtb.mvc.service;
 
 import com.thoughtworks.capacity.gtb.mvc.domain.User;
-import com.thoughtworks.capacity.gtb.mvc.dto.UserDto;
 import com.thoughtworks.capacity.gtb.mvc.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void registerUser(UserDto userDto) {
-        User user = UserDto.toUser(userDto);
-        userRepository.save(user);
+    public void registerUser(User user) {
+        user.setId(userRepository.count());
+        userRepository.register(user);
     }
 }
